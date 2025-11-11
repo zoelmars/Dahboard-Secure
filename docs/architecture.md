@@ -14,13 +14,15 @@ Arsitektur ini terdiri dari dua komponen utama:
 
 ## Topologi Jaringan & Komunikasi
 
-```mermaid
-graph TD
-    Client[Web Browser / User] <-->|WebSocket| Backend[Flask-SocketIO Server\n(Port 5000)]
-    Backend -->|SSH (Port 22)| LB[Load Balancer\n192.168.46.5]
-    Backend -->|SSH (Port 22)| W1[Web Server 1\n192.168.46.2]
-    Backend -->|SSH (Port 22)| W2[Web Server 2\n192.168.46.3]
-    Backend -->|SSH (Port 22)| DB[Database Server\n192.168.46.4]
+```text
+[ Web Browser (Frontend React) ] 
+       <-- WebSocket --> 
+[ Backend Flask-SocketIO (Port 5000) ]
+       |
+       |--- (SSH) ---> [ Load Balancer (192.168.46.5) ]
+       |--- (SSH) ---> [ Web Server 1  (192.168.46.2) ]
+       |--- (SSH) ---> [ Web Server 2  (192.168.46.3) ]
+       |--- (SSH) ---> [ Database      (192.168.46.4) ]
 ```
 
 ### Penjelasan Topologi
